@@ -1,0 +1,15 @@
+pymupdf
+pytesseract
+opencv-python
+numpy
+python-dotenv
+docling
+pyyaml
+chromadb
+sentence-transformers
+rank-bm25
+fastapi
+uvicorn
+requests
+streamlit
+pytest

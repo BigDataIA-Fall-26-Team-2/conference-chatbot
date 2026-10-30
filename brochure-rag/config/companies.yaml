@@ -1,0 +1,21 @@
+companies:
+  merge:
+    name: Merge
+    aliases: [merge, merge.dev, merge for workforce, merge for products]
+    products: [workforce, products]
+  omnitrust_halo:
+    name: OmniTrust Halo
+    aliases: [halo, omnitrust, omni trust, halo ai]
+    products: [security_it_leadership, ai_builders]
+  promptql:
+    name: PromptQL
+    aliases: [promptql, prompt ql]
+    products: [promptql]
+  barndoor_ai:
+    name: Barndoor.ai
+    aliases: [barndoor, barn door, barndoor.ai, bond ai]
+    products: [ai_gateway, automations]
+  c1_ai:
+    name: C1.ai
+    aliases: [c1, c1.ai, c one, conductorone]
+    products: [identity_platform]
