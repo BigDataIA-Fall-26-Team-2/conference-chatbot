@@ -135,3 +135,4 @@ if question:
                     st.stop()
             render_answer(resp)
         history.append({"question": question, "response": resp})
+        st.rerun()
