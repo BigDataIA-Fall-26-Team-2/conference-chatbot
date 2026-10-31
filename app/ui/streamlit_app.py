@@ -76,8 +76,10 @@ def render_answer(resp: dict) -> None:
     st.markdown(resp.get("answer", ""))
     sources = resp.get("sources") or []
     if sources:
-        cites = ", ".join(f"{s['source_file']} (page {s['page']})" for s in sources)
-        st.caption(f"Sources: {cites}")
+        unique = list(dict.fromkeys((s["source_file"], s["page"]) for s in sources))
+        with st.expander(f"Sources ({len(unique)})"):
+            for file, page in unique:
+                st.markdown(f"- **{file}**, page {page}")
 
 
 # ---------- page ----------
