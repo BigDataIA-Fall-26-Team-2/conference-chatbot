@@ -1,0 +1,12 @@
+[
+ {"company_id":"barndoor_ai","question":"What access controls does the gateway enforce?","expected_ids":["barndoor_ai_4_Barndoor_p2_c3"]},
+ {"company_id":"barndoor_ai","question":"Where are the action audit records sent?","expected_ids":["barndoor_ai_4_Barndoor_p2_c4"]},
+ {"company_id":"c1_ai","question":"How many connectors and MCP servers are available?","expected_ids":["c1_ai_6_C1ai_p2_c5"]},
+ {"company_id":"c1_ai","question":"How are agent credentials protected?","expected_ids":["c1_ai_6_C1ai_p1_c3"]},
+ {"company_id":"merge","question":"How does SCIM provisioning work?","expected_ids":["merge_1_Merge_p1_c1"]},
+ {"company_id":"merge","question":"Which identity providers can connect to manage employee access?","expected_ids":["merge_1_Merge_p1_c1"]},
+ {"company_id":"omnitrust_halo","question":"How does Halo protect provider API keys?","expected_ids":["omnitrust_halo_2_Halo_AI_Security_IT_Leadership_p2_c5"]},
+ {"company_id":"omnitrust_halo","question":"Can agents run with network restrictions and require human approval?","expected_ids":["omnitrust_halo_5_Halo_AI_Builders_Business_Teams_p2_c3"]},
+ {"company_id":"promptql","question":"Can several teammates collaborate with one bot?","expected_ids":["promptql_3_PromptQL_p2_c4","promptql_3_PromptQL_p1_c2"]},
+ {"company_id":"promptql","question":"How are business definitions and corrections saved for other bots?","expected_ids":["promptql_3_PromptQL_p1_c1","promptql_3_PromptQL_p2_c4"]}
+]

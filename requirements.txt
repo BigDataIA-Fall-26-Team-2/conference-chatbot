@@ -5,11 +5,12 @@ numpy
 python-dotenv
 docling
 pyyaml
-chromadb
-sentence-transformers
+chromadb==1.5.9
+sentence-transformers==6.2.0
 rank-bm25
 fastapi
 uvicorn
 requests
 streamlit
 pytest
+boto3

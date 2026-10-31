@@ -1,0 +1,7 @@
+{
+  "answer": "According to the brochure, the Barndoor AI gateway enforces six things on every call: human & agent access, runtime policy, AI-ready DLP, routing & fallback, usage & cost control, and observability & audit.",
+  "sources": [
+    {"source_file": "4_Barndoor.pdf", "page": 2}
+  ],
+  "insufficient_evidence": false
+}

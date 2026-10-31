@@ -1,0 +1,9 @@
+{
+  "companies": [
+    {"company_id": "merge", "name": "Merge"},
+    {"company_id": "omnitrust_halo", "name": "OmniTrust Halo"},
+    {"company_id": "promptql", "name": "PromptQL"},
+    {"company_id": "barndoor_ai", "name": "Barndoor.ai"},
+    {"company_id": "c1_ai", "name": "C1.ai"}
+  ]
+}

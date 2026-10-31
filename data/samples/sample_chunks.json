@@ -1,0 +1,18 @@
+[
+  {
+    "id": "barndoor_ai_4_Barndoor_p2_c1",
+    "text": "What the AI gateway enforces on every call. Human & agent access: RBAC by role, group, tool, and action, with a dedicated identity for every agent. Runtime policy: allow, deny, or require approval per tool call and action, enforced inline. AI-ready DLP: PII and secrets masked or blocked before they reach a model or MCP server. Routing & fallback: frontier and self-hosted models, routed to the most cost-effective option. Usage & cost control: real-time spend and hard caps by user, team, agent, and model. Observability & audit: every action and the policy behind it, streamed to Splunk or Datadog.",
+    "company_id": "barndoor_ai",
+    "source_file": "4_Barndoor.pdf",
+    "page": 2,
+    "chunk_index": 1
+  },
+  {
+    "id": "c1_ai_6_C1ai_p2_c1",
+    "text": "Every system, already covered. 400+ C1 Connectors, built on Baton, our open-source connector framework, cover nearly every system in the modern stack. Every agent, governed from day one. AI agents act on systems through MCP. 3,000+ C1 MCP Servers route every agent tool call through the same policy engine and audit trail as every human request.",
+    "company_id": "c1_ai",
+    "source_file": "6_C1ai.pdf",
+    "page": 2,
+    "chunk_index": 1
+  }
+]
