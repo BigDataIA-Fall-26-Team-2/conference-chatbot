@@ -160,6 +160,7 @@ def test_persistence_in_separate_process(store):
     import os
     import subprocess
     import sys
+    import tempfile
     from retrieval.store import ROOT
     store.index_chunks([chunk('alpha', 'secret')])
     script = '''
@@ -173,7 +174,7 @@ print(json.dumps(store.retrieve('alpha', 'secret')))
 '''
     env = {**os.environ, 'PYTHONPATH': str(ROOT)}
     result = subprocess.run([sys.executable, '-c', script, store.client.get_settings().persist_directory],
-                            cwd='/tmp', env=env, capture_output=True, text=True, check=True, timeout=30)
+                            cwd=tempfile.gettempdir(), env=env, capture_output=True, text=True, check=True, timeout=30)
     assert json.loads(result.stdout)[0]['id'] == 'alpha_1'
 
 
