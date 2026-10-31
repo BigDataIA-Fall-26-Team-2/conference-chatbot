@@ -92,3 +92,5 @@ Remaining boundaries:
 - Existing OCR noise remains in the chunks. These tests do not certify extraction accuracy against every PDF page.
 - Indexing is an upsert, not an atomic full-corpus replacement. Use a fresh database directory after removing/rechunking source material; do not index concurrently with serving queries.
 - Company IDs are a scoping mechanism, not user authorization. The registry alias `bond ai` currently maps to `barndoor_ai`; verify it before implementing alias-based company routing. This retriever accepts only exact IDs and does not use aliases.
+
+OCR cleanup: fixed rules for common Tesseract mistakes (standalone "Al" to "AI", "Pil" to "PII", "Il" to "II"), applied the same to all brochures.

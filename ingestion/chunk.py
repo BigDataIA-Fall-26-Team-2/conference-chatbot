@@ -17,11 +17,20 @@ MIN_WORDS = 3
 
 WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9.&+'/-]*")
 
+OCR_FIXES = [
+    (re.compile(r"\bAl\b"), "AI"),
+    (re.compile(r"\bPil\b"), "PII"),
+    (re.compile(r"\bIl\b"), "II"),
+]
+
 
 def clean_text(text):
     text = text.replace("\u2014", ", ").replace("\u2013", "-")
     lines = [re.sub(r"\s+", " ", ln).strip() for ln in text.splitlines()]
-    return "\n".join(ln for ln in lines if ln)
+    text = "\n".join(ln for ln in lines if ln)
+    for pattern, fix in OCR_FIXES:
+        text = pattern.sub(fix, text)
+    return text
 
 
 def is_noise(text):
