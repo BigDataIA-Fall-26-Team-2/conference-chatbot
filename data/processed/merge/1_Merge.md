@@ -1,147 +1,214 @@
-<!-- page 1 | tesseract | conf 84.6 -->
+<!-- page 1 | textract | conf 96.9 -->
 
-> MERGE for Workforce
+MERGE for Workforce
+
+merge.dev/workforce
 
 Unlock the full potential
+of AI at work
 
-of Al at work
-
-Merge for Workforce brings company context, tools, and approved models to the Al
-
+Merge for Workforce brings company context, tools, and approved models to the AI
 employees use, under policies admins set once and enforce everywhere.
 
-G6*U+
-
-Altools
-
-Agents
-
-Provision
-
-Grant employees Al access
-that fits their roles
-Connect identity providers like Okta or Entra
-
-via SCIM so Al access follows your org chart.
-New hires see what they are approved to use.
+AI tools
 
 Merge for Workforce
 
+Agents
+
 Universal context layer
-Company knowledge that goes with every Al
+Company knowledge that goes with every AI
 
 MCP gateway
+
+W
 
 Distribute approved connectors and skills
 
 Model routing
-
-Route, cap, and control Al spend
+Route, cap, and control AI spend
 
 Security suite
+Deploy AI without adding new risk
 
-Deploy Al without adding new risk
+N
 
-Deployable in your cloud orours 25
+Deployable in your cloud or ours
+
+Synced data
+
+aws
+
+MCP connectors
+
+Skills
+
+5
+
+LLMs
+
+Provision
+
+Grant employees AI access
+that fits their roles
+
+Connect identity providers like Okta or Entra
+via SCIM so AI access follows your org chart.
+New hires see what they are approved to use.
+
+Identity provider
+
+SCIM provisioning
+. Live
+Users & groups auto-synced
+
+Synced groups
+
+Distribute access to AI models, agent tools,
+and skills to employees, with granular
+permissions for what each team can access.
+
+Sales
+
+GTM
+
+Product
+
+Engineering
 
 Permission
+
+All teams
 
 Provide teams with the agent
 tools and models they need
 
-Distribute access to Al models, agent tools,
-and skills to employees, with granular
-permissions for what each team can access.
+Salesforce
+0
+Active
+Slack
+.
+Active
+Gmail
+Active
+GitHub
+.
+Active
+Notion
+a
+Active
 
-merge.dev/workforce
+Approved connectors
+Access assigned by group
 
-w O&®&
-Synced data
-
-* WO
-
-MCP connectors
-Skills
-@ * +
-LLMs
 Act
-Secure Al workflows without
+
+Secure AI workflows without
 slowing adoption
 
-Employees use Al to take approved actions,
+Employees use AI to take approved actions,
 while tool calls are scanned for sensitive data
 before reaching external systems.
 
-identity provider Approved connectors Updated Acme corp deal =
-ne Access assigned by g'ouo Success
-GoO0GO-0
-® Salestorce © Active
-‘Send bulk email campaign
-SCIM provisioning wie a Blocked Not in GTM group M
-Users & groups euto-synced 42 Slack © Active
-Synced groups A Geet “name ernie Q
-Seles ci Engineering Product Q GitHub © Active
-Posted to #launch-q3 eh
-i Notion ® Active Succoss ie
+N
+
+Updated Acme corp deal
+Success
+
+Send bulk email campaign
+Blocked Not in GTM group
+
+E
+
+Merged PR in web-app
+Success
+
+C
+
+Posted to #launch-q3
+Success
+
 Trusted by
+
+OpenAl
+
 AMERICAN
-OpenAl ASEAN = 3S Dropbox NETFLIX. FACTORY Rula
+EXPRESS
 
-ty, by default
+Dropbox
 
-_ -—
+NETFLIX
 
-<!-- page 2 | tesseract | conf 82.0 -->
+FACTORY
 
-————————————E eer rere
+ampliant
 
-> MERGE for Products merge.dev
+&Rula
 
-Ship Al and integrations
+<!-- page 2 | textract | conf 98.5 -->
+
+1
+MERGE for Products
+merge.dev
+Ship AI and integrations
 your customers trust, faster
-
 Merge is the layer between your product and every external connection: sync customer
 data, give agents secure tool access, and route to any model, all through one platform.
-
 Data systems
-
-~ Deployable in your cloud or ours and aD) a
-¢ ploy y vy te a | ZID> Ww ho)
-
-© Security & observability
-
-») > MERGE Agent tools
-
-% =4.
-The layer between your © e@ © W) as —=
-Your product product and every external
+Deployable in your cloud or ours
+ADP
+W
+Security & observability
+MERGE
+Agent tools
+The layer between your
+N
+Your product
+product and every external
 connection
-Al models
-
-“% GH + GZ
-
-Data systems Agent tools Al models
-Sync customer data Give agents secure tool Route to any LLM
-Connect to HRIS, ATS, CRM, accounting, access Access every major model with intelligent or
-ticketing, file storage, knowledge base, and Scope agent access across 5,000+ tools, customer routing and cost and performance
-
-chat systems, all through one API. with every call authenticated, logged, and control built in.
-
+AI models
+Z
+Data systems
+Agent tools
+AI models
+Sync customer data
+Give agents secure tool
+Route to any LLM
+Connect to HRIS, ATS, CRM, accounting,
+access
+Access every major model with intelligent or
+ticketing, file storage, knowledge base, and
+Scope agent access across 5,000+ tools,
+customer routing and cost and performance
+chat systems, all through one API.
+with every call authenticated, logged, and
+control built in.
 auditable.
+You
+AI
+MERGE Unified
+MERGE Gateway
+MERGE Agent Handler
 
-. ea |
-_* > MERGE Unified ~- - _.” > MERGE Gateway é
-< gs _*. > MERGE Agent Handler ¢ SJ
-y 2’. q
+telnyx
 
-_
+"With the help of Merge, we're able to deliver the most connected voice AI agents in the market. As a
+result, demand from enterprise organizations across industries has surged."
 
-4 teinyx
-“With the help of Merge, we’re able to deliver the most connected voice Al agents in the market. As a
-result, demand from enterprise organizations across industries has surged.”
-
-lan Reither, COO
 Trusted by
 
-OpenAl F perplexity 22 Dropbox ramp 4 & FACTORY Zoom AON
+lan Reither, COO
+
+OpenAl
+
+perplexity
+
+Dropbox
+ramp
+
+FACTORY
+
+zoom
+
+AON
 

@@ -19,9 +19,12 @@ PROCESSED = ROOT / "data" / "processed"
 DPI = 300
 MIN_CONF = 70
 MIN_WORDS = 100
+LOW_WORD_CONF = 60
+MAX_LOW_SHARE = 0.12
 TESS_CONFIG = "--oem 1 --psm 3"
 FALLBACK = os.getenv("OCR_FALLBACK", "textract")
 AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
+SKIP_LAYOUT = {"LAYOUT_PAGE_NUMBER", "LAYOUT_LIST"}
 
 if os.getenv("TESSERACT_CMD"):
     pytesseract.pytesseract.tesseract_cmd = os.getenv("TESSERACT_CMD")
@@ -90,7 +93,8 @@ def tesseract_page(gray):
             "left": b["left"],
         })
     avg_conf = round(float(np.mean(confs)), 1) if confs else 0.0
-    return out, avg_conf, len(confs)
+    low_share = round(sum(1 for c in confs if c < LOW_WORD_CONF) / len(confs), 3) if confs else 1.0
+    return out, avg_conf, len(confs), low_share
 
 
 def textract_page(gray):
@@ -98,37 +102,28 @@ def textract_page(gray):
 
     ok, buf = cv2.imencode(".jpg", gray, [cv2.IMWRITE_JPEG_QUALITY, 90])
     client = boto3.client("textract", region_name=AWS_REGION)
-    resp = client.detect_document_text(Document={"Bytes": buf.tobytes()})
+    resp = client.analyze_document(Document={"Bytes": buf.tobytes()}, FeatureTypes=["LAYOUT"])
 
-    lines, confs = [], []
-    for b in resp["Blocks"]:
-        if b["BlockType"] == "WORD":
-            confs.append(b["Confidence"])
-        elif b["BlockType"] == "LINE":
-            box = b["Geometry"]["BoundingBox"]
-            lines.append({"text": b["Text"], "top": box["Top"], "left": box["Left"], "height": box["Height"]})
-
+    by_id = {b["Id"]: b for b in resp["Blocks"]}
+    confs = [b["Confidence"] for b in resp["Blocks"] if b["BlockType"] == "WORD"]
     h, w = gray.shape
-    blocks, current = [], []
-    for ln in lines:
-        if current:
-            prev = current[-1]
-            gap = ln["top"] - (prev["top"] + prev["height"])
-            if gap > 1.2 * prev["height"] or abs(ln["height"] - prev["height"]) > 0.5 * prev["height"]:
-                blocks.append(current)
-                current = []
-        current.append(ln)
-    if current:
-        blocks.append(current)
 
     out = []
-    for i, blk in enumerate(blocks):
+    for b in resp["Blocks"]:
+        if not b["BlockType"].startswith("LAYOUT_") or b["BlockType"] in SKIP_LAYOUT:
+            continue
+        child_ids = [i for r in b.get("Relationships", []) if r["Type"] == "CHILD" for i in r["Ids"]]
+        lines = [by_id[i] for i in child_ids if i in by_id and by_id[i]["BlockType"] == "LINE"]
+        if not lines:
+            continue
+        box = b["Geometry"]["BoundingBox"]
         out.append({
-            "block": i + 1,
-            "text": "\n".join(x["text"] for x in blk),
-            "avg_height": round(float(np.mean([x["height"] for x in blk])) * h, 1),
-            "top": int(blk[0]["top"] * h),
-            "left": int(min(x["left"] for x in blk) * w),
+            "block": len(out) + 1,
+            "text": "\n".join(ln["Text"] for ln in lines),
+            "avg_height": round(float(np.mean([ln["Geometry"]["BoundingBox"]["Height"] for ln in lines])) * h, 1),
+            "top": int(box["Top"] * h),
+            "left": int(box["Left"] * w),
+            "layout": b["BlockType"],
         })
     avg_conf = round(float(np.mean(confs)), 1) if confs else 0.0
     return out, avg_conf, len(confs)
@@ -155,9 +150,10 @@ def ocr_pdf(company_id, pdf_path, force_engine=None):
     pages = []
     for i, page in enumerate(doc):
         gray, angle = deskew(render_page(page))
-        blocks, conf, words = tesseract_page(gray)
+        blocks, conf, words, low_share = tesseract_page(gray)
         engine = "tesseract"
-        if force_engine == "textract" or (force_engine is None and (conf < MIN_CONF or words < MIN_WORDS)):
+        weak = conf < MIN_CONF or words < MIN_WORDS or low_share > MAX_LOW_SHARE
+        if force_engine == "textract" or (force_engine is None and weak):
             if FALLBACK == "textract" or force_engine == "textract":
                 blocks, conf, words = textract_page(gray)
                 engine = "textract"
@@ -171,10 +167,11 @@ def ocr_pdf(company_id, pdf_path, force_engine=None):
             "ocr_engine": engine,
             "ocr_confidence": conf if engine != "docling" else None,
             "word_count": words,
+            "tesseract_low_share": low_share,
             "skew_degrees": angle,
             "blocks": blocks,
         })
-        print(f"{company_id}\t{pdf_path.name}\tpage={i + 1}\tengine={engine}\tconf={conf}\twords={words}\tskew={angle}")
+        print(f"{company_id}\t{pdf_path.name}\tpage={i + 1}\tengine={engine}\tconf={conf}\twords={words}\tlow_share={low_share}\tskew={angle}")
     return pages
 
 

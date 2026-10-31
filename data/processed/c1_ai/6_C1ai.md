@@ -1,35 +1,73 @@
-<!-- page 1 | tesseract | conf 86.1 -->
+<!-- page 1 | textract | conf 99.0 -->
 
-a
+C1.ai
+SOLUTION BRIEF
 
-ramp 4 instacart @zscaler 4 pigitalOcean caBrex = klaviyo” —qualtrics™
+C1 Identity Platform
+
+One platform to govern identity, access, and agent work.
+
+ramp
+
+instacart
+
+zscaler
+
+DigitalOcean
+
+Brex
+
+klaviyo"
+
+qualtrics**
 
 Identity is growing faster
+than governance.
 
-than governance. what C1Lai galfers
-Every new employee, service account, and Al agent adds i visibility :
-access that someone has to review, own, and eventually a ad
-remove. Al is only as valuable as the access and context it can avery a ba Mount ba gad, and agent, linked
-— ‘1 . . I ; nt$, atid accountable ers
-act on. Most organizations can’t deliver the right access to ene sha fixed before it hte... :
-
-every identity, across every system, at the speed the business / security issue.
+Every new employee, service account, and AI agent adds
+access that someone has to review, own, and eventually
+remove. AI is only as valuable as the access and context it can
+act on. Most organizations can't deliver the right access to
+every identity, across every system, at the speed the business
 needs. Security, IT, and identity teams add a new integration
-
 for every new agent or workflow. Context fragments, access
-reviews take weeks, and standing privileges pile up. The risk is tne connected Besa
+reviews take weeks, and standing privileges pile up. The risk is
 real: 80% of organizations experienced at least one identity-
-Findings, governance, agent access, credentials, and work
-related breach in the past year.' run ch:the same identity and access data. People and
+related breach in the past year.¹
 
-agents are governed under one policy and one audit trail
-Al adoption compounds the problem. Agents have no identity.
+AI adoption compounds the problem. Agents have no identity.
 Credentials leak into agent context. Nothing enforces policy at
-runtime. Shadow Al is already running. And the human A] Built for engineers
+runtime. Shadow AI is already running. And the human
 workforce problem never went away. Without a governed path
-that moves at enterprise speed, teams work around ‘ : : ” ee ot pepe narra
+that moves at enterprise speed, teams work around
+governance entirely.
 
-governance entirely. every change is reviewed, versioned, and repeatable
+what C1.aj delivers
+
+7
+
+Complete visibility
+
+Every person, service account, workload, and agent, linked
+to its accounts, entitlements, and accountable owners.
+Risky access gets found and fixed before it becomes a
+security issue.
+
+7
+
+One connected inventory
+
+Findings, governance, agent access, credentials, and work
+run on the same identity and access data. People and
+agents are governed under one policy and one audit trail.
+
+7
+
+Built for engineers
+
+Automate through the REST API and SDKs, the C1.ai CLI,
+Terraform, and Functions. Access policy lives in code, so
+every change is reviewed, versioned, and repeatable.
 
 One platform. The full identity stack.
 
@@ -38,22 +76,20 @@ one shared identity and access inventory. Every finding,
 review, grant, and agent action draws on the same data, so
 security sees the full picture, IT stops stitching tools together,
 and governance keeps pace as the business adds people,
+systems, and agents.
 
 For governance, that means automated joiner-mover-leaver
 workflows, just-in-time access in place of standing privilege,
 and Al-assisted access reviews, so teams can modernize
-identity without rebuilding it. For Al, agents get their own
+identity without rebuilding it. For AI, agents get their own
 scoped identities instead of borrowed human ones, inference
-systems, and agents. is routed by risk and cost, and agent keys stay in a vault, out of
+is routed by risk and cost, and agent keys stay in a vault, out of
 code and context. An open-source connector ecosystem
-
 extends coverage to any system.
 
-Qo
+C1.ai
 
-Put Al to work.
-
-QCl1.ai
+Put AI to work.
 
 <!-- page 2 | tesseract | conf 91.5 -->
 

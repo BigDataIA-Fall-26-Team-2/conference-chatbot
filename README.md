@@ -112,3 +112,18 @@ Open http://127.0.0.1:8501. Choose a company, type a question, and press Enter. 
 Ten prepared questions with expected answer summaries are in `tests/demo_questions.yaml`. Automated UI tests simulate ten questions, verify company-separated history, clear-chat behavior, retries, missing evidence, and offline backend handling. Run `python -m pytest -q`.
 
 After changing imported frontend modules (such as `frontend/api_client.py`), restart the Streamlit process as well as refreshing the browser. A page rerun can retain the previous imported function signature. Restart the API separately after backend changes. A server restart clears in-memory chat history; export the session first if needed.
+OCR cleanup: fixed rules for common Tesseract mistakes (standalone "Al" to "AI", "Pil" to "PII", "Il" to "II"), applied the same to all brochures.
+
+OCR fallback: a page goes to AWS Textract (Layout mode) if Tesseract average confidence is below 70, words are below 100, or more than 12% of words have confidence below 60. On our brochures this sent 4 of 12 pages to Textract (C1 p1, Merge p1 and p2, Halo Security p1).
+
+## Run
+python ingestion/ocr.py
+python ingestion/chunk.py
+uvicorn backend.main:app --reload
+streamlit run frontend/streamlit_app.py
+
+## Known OCR limitations
+- Tables: row labels can get separated from their descriptions (Halo capability tables).
+- Multi-column rows inside diagrams can mix line by line (Merge for Products bottom section).
+- Headings next to icons are sometimes missed (Barndoor, PromptQL, Merge "MCP gateway"); the text under them is kept.
+- Next step would be Textract TABLES mode for table pages.
