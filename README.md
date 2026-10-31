@@ -96,3 +96,15 @@ Remaining boundaries:
 OCR cleanup: fixed rules for common Tesseract mistakes (standalone "Al" to "AI", "Pil" to "PII", "Il" to "II"), applied the same to all brochures.
 
 OCR fallback: a page goes to AWS Textract (Layout mode) if Tesseract average confidence is below 70, words are below 100, or more than 12% of words have confidence below 60. On our brochures this sent 4 of 12 pages to Textract (C1 p1, Merge p1 and p2, Halo Security p1).
+
+## Run
+python ingestion/ocr.py
+python ingestion/chunk.py
+uvicorn backend.main:app --reload
+streamlit run frontend/streamlit_app.py
+
+## Known OCR limitations
+- Tables: row labels can get separated from their descriptions (Halo capability tables).
+- Multi-column rows inside diagrams can mix line by line (Merge for Products bottom section).
+- Headings next to icons are sometimes missed (Barndoor, PromptQL, Merge "MCP gateway"); the text under them is kept.
+- Next step would be Textract TABLES mode for table pages.
