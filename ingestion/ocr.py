@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 
 import cv2
-import fitz
+import pymupdf as fitz
 import numpy as np
 import pytesseract
 from dotenv import load_dotenv
@@ -20,6 +20,8 @@ DPI = 300
 MIN_CONF = 70
 MIN_WORDS = 100
 TESS_CONFIG = "--oem 1 --psm 3"
+FALLBACK = os.getenv("OCR_FALLBACK", "textract")
+AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
 
 if os.getenv("TESSERACT_CMD"):
     pytesseract.pytesseract.tesseract_cmd = os.getenv("TESSERACT_CMD")
@@ -91,6 +93,47 @@ def tesseract_page(gray):
     return out, avg_conf, len(confs)
 
 
+def textract_page(gray):
+    import boto3
+
+    ok, buf = cv2.imencode(".jpg", gray, [cv2.IMWRITE_JPEG_QUALITY, 90])
+    client = boto3.client("textract", region_name=AWS_REGION)
+    resp = client.detect_document_text(Document={"Bytes": buf.tobytes()})
+
+    lines, confs = [], []
+    for b in resp["Blocks"]:
+        if b["BlockType"] == "WORD":
+            confs.append(b["Confidence"])
+        elif b["BlockType"] == "LINE":
+            box = b["Geometry"]["BoundingBox"]
+            lines.append({"text": b["Text"], "top": box["Top"], "left": box["Left"], "height": box["Height"]})
+
+    h, w = gray.shape
+    blocks, current = [], []
+    for ln in lines:
+        if current:
+            prev = current[-1]
+            gap = ln["top"] - (prev["top"] + prev["height"])
+            if gap > 1.2 * prev["height"] or abs(ln["height"] - prev["height"]) > 0.5 * prev["height"]:
+                blocks.append(current)
+                current = []
+        current.append(ln)
+    if current:
+        blocks.append(current)
+
+    out = []
+    for i, blk in enumerate(blocks):
+        out.append({
+            "block": i + 1,
+            "text": "\n".join(x["text"] for x in blk),
+            "avg_height": round(float(np.mean([x["height"] for x in blk])) * h, 1),
+            "top": int(blk[0]["top"] * h),
+            "left": int(min(x["left"] for x in blk) * w),
+        })
+    avg_conf = round(float(np.mean(confs)), 1) if confs else 0.0
+    return out, avg_conf, len(confs)
+
+
 def docling_page(pdf_path, page_index):
     from docling.document_converter import DocumentConverter
 
@@ -107,23 +150,26 @@ def docling_page(pdf_path, page_index):
     return blocks, len(md.split())
 
 
-def ocr_pdf(company_id, pdf_path):
+def ocr_pdf(company_id, pdf_path, force_engine=None):
     doc = fitz.open(pdf_path)
     pages = []
     for i, page in enumerate(doc):
         gray, angle = deskew(render_page(page))
         blocks, conf, words = tesseract_page(gray)
         engine = "tesseract"
-        if conf < MIN_CONF or words < MIN_WORDS:
-            blocks, words = docling_page(pdf_path, i)
-            engine = "docling"
+        if force_engine == "textract" or (force_engine is None and (conf < MIN_CONF or words < MIN_WORDS)):
+            if FALLBACK == "textract" or force_engine == "textract":
+                blocks, conf, words = textract_page(gray)
+                engine = "textract"
+            else:
+                blocks, words = docling_page(pdf_path, i)
+                engine = "docling"
         pages.append({
             "company_id": company_id,
             "source_file": pdf_path.name,
             "page": i + 1,
             "ocr_engine": engine,
-            "ocr_confidence": conf if engine == "tesseract" else None,
-            "tesseract_confidence": conf,
+            "ocr_confidence": conf if engine != "docling" else None,
             "word_count": words,
             "skew_degrees": angle,
             "blocks": blocks,
@@ -141,7 +187,7 @@ def write_outputs(company_id, pdf_path, pages):
             f.write(json.dumps(p, ensure_ascii=False) + "\n")
     with open(out_dir / f"{stem}.md", "w", encoding="utf-8") as f:
         for p in pages:
-            f.write(f"<!-- page {p['page']} | {p['ocr_engine']} | conf {p['tesseract_confidence']} -->\n\n")
+            f.write(f"<!-- page {p['page']} | {p['ocr_engine']} | conf {p['ocr_confidence']} -->\n\n")
             for b in p["blocks"]:
                 f.write(b["text"] + "\n\n")
 
@@ -149,12 +195,13 @@ def write_outputs(company_id, pdf_path, pages):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--company", default=None)
+    parser.add_argument("--engine", choices=["textract"], default=None)
     args = parser.parse_args()
 
     companies = [args.company] if args.company else sorted(d.name for d in BROCHURES.iterdir() if d.is_dir())
     for company_id in companies:
         for pdf_path in sorted((BROCHURES / company_id).glob("*.pdf")):
-            pages = ocr_pdf(company_id, pdf_path)
+            pages = ocr_pdf(company_id, pdf_path, args.engine)
             write_outputs(company_id, pdf_path, pages)
 
 

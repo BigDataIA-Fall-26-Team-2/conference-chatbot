@@ -13,3 +13,4 @@ uvicorn
 requests
 streamlit
 pytest
+boto3
