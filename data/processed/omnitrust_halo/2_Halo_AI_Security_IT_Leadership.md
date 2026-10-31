@@ -1,72 +1,112 @@
-<!-- page 1 | tesseract | conf 82.2 -->
+<!-- page 1 | textract | conf 98.0 -->
 
-For Al, Security & IT Leadership ty omnitust
+HALO For AI, Security & IT Leadership
+by OmniTrust
 
 Take Control of Enterprise Al
+Discover Every Risk. Enforce Every Policy. Optimize Every Interaction.
 
-Al adoption is accelerating across employee devices, applications, models and autonomous agents.
-Halo provides an independent Al control plane to discover usage, protect sensitive information, enforce
-governance policies and optimize Al workloads, without forcing employees to abandon the tools they already use.
+AI adoption is accelerating across employee devices, applications, models and autonomous agents.
+Halo provides an independent AI control plane to discover usage, protect sensitive information, enforce
+governance policies and optimize AI workloads, without forcing employees to abandon the tools they already use.
 
-Al adoption is outpacing enterprise control - Organizations face expanding Shadow Al, uncontrolled data
-exposure, inconsistent Al policies, growing agent authority, escalating inference costs and limited auditability.
+AI adoption is outpacing enterprise control - Organizations face expanding Shadow AI, uncontrolled data
+exposure, inconsistent AI policies, growing agent authority, escalating inference costs and limited auditability.
 
-TODAY ; 2028 { 2030
-}
-e |
-109:1 150,000+ 2.5B per
-— a5, Agents act without
-machine identities | Al agents per Fortune 500 active Al agents r— (x) coridletert pot
-per human enterprise 1 globally / enforcement
-(Gartner, 2026) (IDC, 2026)
-
+TODAY
+2028
+2030
+109:1
+150,000+
+2.5B
+NO RUNTIME CONTROL
+machine identities
+Agents act without
+AI agents per Fortune 500
+active AI agents
+consistent policy
+per human
+enterprise
+globally
+enforcement
+(Gartner, 2026)
+(IDC, 2026)
 MODEL LOCK-IN
-—* £ Teams get stuck with
+:
+Teams get stuck with
 limited model choice
-
+:
 and poor routing
-
 TOOL + DATA RISK
-
-“ea § Agents can overreach
+459T
+Agents can overreach
 into apps, tools and
-
+AGENT ACTIONS
 sensitive data
-
+PER YEAR BY 2030
+(IDC, 2026)
 COST + GOVERNANCE
-
-a il Scale outpaces visibility,
+Scale outpaces visibility,
 budget control and
 accountability
 
-OmniTrust’s Halo Al Control Plane turns Al governance into operational control, giving enterprises visibility into Al
+OmniTrust's Halo AI Control Plane turns AI governance into operational control, giving enterprises visibility into AI
 use, enforcement over data and execution, and the freedom to optimize models, infrastructure and cost.
 
-Discover re
-Discover Al Across Your Enterprise Employees Endpoint Model Providers
-Gain visibility into sanctioned and BA Byes v i: ee ea @ A
-Shadow Al through deep endpoint 2 - GS Ww
-and browser discovery, with a 4 anna a ae
-actionable inventories and evidence. ©e 2 Al Gateway
-lind _——
-Control 00 ->Ssés
-Govern HALO
-- Eaioree et vee , Compute Cloud we on.
-Move from monitoring to active Models | Inference | Sovereign Options & &
-enforcement. Control applications, ' roses :
+Discover
+
+Discover AI Across Your Enterprise
+Gain visibility into sanctioned and
+Shadow AI through deep endpoint
+and browser discovery, with
+actionable inventories and evidence.
+
+Control
+
+Govern & Enforce AI Use
+
+Move from monitoring to active
+enforcement. Control applications,
 protect sensitive data and apply enterprise
 policies where employees work.
-Add-On: Gy
-Halo Agent Studio SD
-Optimize Give business tea
-ms an approved environment to build
-ee ees epbornl teauedts centrally and deploy Al agents using the same Halo identity, data
-- 4 rotection, policy, run .
-manage budgets and enable flexible model/provider P pomey irva:eind coat cantals
-choices through Halo Al Gateway. These three statements
->
-should be the most memorable part of page one. Bulld » Operate > Scale
-© Omnitrust Security LLC
+
+HALO
+Model Providers
+Employees
+& AI Apps
+Endpoint
+AI
+Discover
+ABOM
+Control
+HALO
+M
+AI Gateway
+Runtime Governance Model Routing
+External Tools
+& Date (via MCP)
+HALO
+Compute Cloud
+Models Inference Sovereign Options
+
+Optimize
+Secure & Optimize AI at Runtime
+
+Govern model access, inspect AI requests, centrally
+manage budgets and enable flexible model/provider
+choices through Halo AI Gateway. These three statements
+should be the most memorable part of page one.
+
+Add-On:
+Halo Agent Studio
+
+Give business teams an approved environment to build
+and deploy AI agents using the same Halo identity, data
+protection, policy, runtime and cost controls.
+
+Build +> Operate +> Scale
+
+© OmniTrust Security LLC
 
 <!-- page 2 | tesseract | conf 88.1 -->
 

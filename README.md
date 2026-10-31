@@ -94,3 +94,5 @@ Remaining boundaries:
 - Company IDs are a scoping mechanism, not user authorization. The registry alias `bond ai` currently maps to `barndoor_ai`; verify it before implementing alias-based company routing. This retriever accepts only exact IDs and does not use aliases.
 
 OCR cleanup: fixed rules for common Tesseract mistakes (standalone "Al" to "AI", "Pil" to "PII", "Il" to "II"), applied the same to all brochures.
+
+OCR fallback: a page goes to AWS Textract (Layout mode) if Tesseract average confidence is below 70, words are below 100, or more than 12% of words have confidence below 60. On our brochures this sent 4 of 12 pages to Textract (C1 p1, Merge p1 and p2, Halo Security p1).
