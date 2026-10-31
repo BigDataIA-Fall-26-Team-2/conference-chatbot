@@ -4,9 +4,19 @@ Chatbot that answers questions only from conference brochures. Each company is k
 
 Pipeline: PDF -> OCR (Tesseract, Docling fallback) -> chunks with company metadata -> Chroma -> FastAPI -> Streamlit
 
-## Setup
+## Install
+conda create -n brochure-rag python=3.11 -y
+conda activate brochure-rag
 pip install -r requirements.txt
-copy .env.example .env   (then fill the keys)
+Install Tesseract (Windows: UB Mannheim installer), set TESSERACT_CMD in .env
+
+## Add a new brochure
+Put the PDF in data/brochures/<company_id>/, add the company to config/companies.yaml, run ingestion.
+
+## Run
+python ingestion/ocr.py
+uvicorn backend.main:app --reload
+streamlit run frontend/streamlit_app.py
 
 ## Add a new brochure
 Put the PDF in data/brochures/<company_id>/, add the company to config/companies.yaml, run ingest.
