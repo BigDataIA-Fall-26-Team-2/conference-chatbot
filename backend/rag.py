@@ -1,7 +1,7 @@
 import importlib
 import json
 from openai import OpenAI
-from .config import CHAT_MODEL, MOCK_RETRIEVAL
+from .config import CHAT_MODEL, MOCK_RETRIEVAL, get_api_key
 
 INSUFFICIENT = 'The provided company brochures do not contain enough information to answer that question.'
 
@@ -33,7 +33,7 @@ def answer_question(company_id: str, question: str) -> dict:
                     "insufficient_evidence (boolean). Cite evidence in your answer using [1], [2], etc. "
                     "Only cite refs actually used; do not invent facts or references. "
                     "If no evidence supports an answer, set used_refs=[] and insufficient_evidence=true.")
-    result = OpenAI().chat.completions.create(
+    result = OpenAI(api_key=get_api_key()).chat.completions.create(
         model=CHAT_MODEL,
         messages=[{'role': 'system', 'content': instructions},
                   {'role': 'user', 'content': json.dumps({'question': question, 'evidence': evidence})}],

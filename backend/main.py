@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from .schemas import ChatRequest, ChatResponse, CompaniesResponse
 from .registry import COMPANIES
 from .rag import answer_question
+from .config import BackendConfigurationError
 
 app = FastAPI(title='Conference Brochure RAG API')
 
@@ -15,6 +16,8 @@ def chat(request: ChatRequest):
         raise HTTPException(status_code=404, detail='Unknown company_id')
     try:
         return answer_question(request.company_id, request.question)
+    except BackendConfigurationError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
     except (ImportError, ModuleNotFoundError):
         raise HTTPException(status_code=503, detail='Retrieval service is not configured')
     except Exception:

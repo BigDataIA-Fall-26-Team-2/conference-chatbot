@@ -1,0 +1,56 @@
+questions:
+- company_id: barndoor_ai
+  question: What access controls does the gateway enforce?
+  expected_ids:
+  - barndoor_ai_4_Barndoor_p2_c3
+  expected_answer_summary: RBAC by role, group, tool and action; per-agent identity.
+- company_id: barndoor_ai
+  question: Where are the action audit records sent?
+  expected_ids:
+  - barndoor_ai_4_Barndoor_p2_c4
+  expected_answer_summary: Splunk or Datadog.
+- company_id: c1_ai
+  question: How many connectors and MCP servers are available?
+  expected_ids:
+  - c1_ai_6_C1ai_p2_c5
+  expected_answer_summary: 400+ C1 Connectors and 3,000+ C1 MCP Servers.
+- company_id: c1_ai
+  question: How are agent credentials protected?
+  expected_ids:
+  - c1_ai_6_C1ai_p1_c3
+  expected_answer_summary: Agent keys stay in a vault, out of code and context.
+- company_id: merge
+  question: How does SCIM provisioning work?
+  expected_ids:
+  - merge_1_Merge_p1_c1
+  expected_answer_summary: Connect Okta or Entra through SCIM so access follows the
+    org chart.
+- company_id: merge
+  question: Which identity providers can connect to manage employee access?
+  expected_ids:
+  - merge_1_Merge_p1_c1
+  expected_answer_summary: Okta or Entra.
+- company_id: omnitrust_halo
+  question: How does Halo protect provider API keys?
+  expected_ids:
+  - omnitrust_halo_2_Halo_AI_Security_IT_Leadership_p2_c5
+  expected_answer_summary: Brokered credentials and short-lived endpoint tokens.
+- company_id: omnitrust_halo
+  question: Can agents run with network restrictions and require human approval?
+  expected_ids:
+  - omnitrust_halo_5_Halo_AI_Builders_Business_Teams_p2_c3
+  expected_answer_summary: Isolated environments, network restrictions, and approval
+    policies.
+- company_id: promptql
+  question: Can several teammates collaborate with one bot?
+  expected_ids:
+  - promptql_3_PromptQL_p2_c4
+  - promptql_3_PromptQL_p1_c2
+  expected_answer_summary: Invite teammates into the same bot to contribute and review.
+- company_id: promptql
+  question: How are business definitions and corrections saved for other bots?
+  expected_ids:
+  - promptql_3_PromptQL_p1_c1
+  - promptql_3_PromptQL_p2_c4
+  expected_answer_summary: Review proposed shared wiki updates containing definitions,
+    decisions and corrections.

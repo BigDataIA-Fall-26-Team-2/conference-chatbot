@@ -1,17 +1,28 @@
-Dhruvi's backend contribution — copy backend/ into the team repository.
+Backend setup — run commands from the repository root.
 
-1. In the repository root: python3 -m venv .venv
-2. Activate: source .venv/bin/activate (Mac/Linux)
-3. Install: pip install -r requirements-backend.txt
-4. Copy .env.example to .env and set OPENAI_API_KEY.
-5. Until Lokesh's retrieval code is ready, set MOCK_RETRIEVAL=true in .env.
-6. Run: uvicorn backend.main:app --reload
-7. Visit http://127.0.0.1:8000/docs to test GET /companies and POST /chat.
-8. For real demo, set MOCK_RETRIEVAL=false and ensure `retrieval.retrieve(company_id, question, k=6)` exists.
+1. Use Python 3.11 and activate the project virtual environment.
+   Mac/Linux: source .venv/bin/activate
+   Windows PowerShell: .venv\Scripts\Activate.ps1
+2. Install dependencies into that interpreter:
+   python -m pip install -r requirements.txt -r requirements-backend.txt
+3. If .env does not already exist, copy .env.example to .env.
+   Preserve an existing .env; do not overwrite credentials.
+4. Edit the repository-root .env locally:
+   OPENAI_API_KEY=<your actual API key>
+   CHAT_MODEL=gpt-4o-mini
+   MOCK_RETRIEVAL=false
+   LLM_API_KEY is accepted for compatibility; OPENAI_API_KEY takes precedence.
+5. Build the local vector database if needed:
+   python -m retrieval.index
+6. Start the backend using the same interpreter:
+   python -m uvicorn backend.main:app --reload
+7. Visit http://127.0.0.1:8000/docs and test GET /companies and POST /chat.
+8. Restart the backend after changing environment variables.
 
-Important:
-- Mock retrieval contains SYNTHETIC content; do not present it as brochure facts.
-- Coordinate company IDs with Guna's registry; current IDs are provisional.
-- The retrieval module must export retrieve(...) at package root, or adjust import in backend/rag.py.
-- API keys stay in .env, never in Git.
-- This project does NOT convert brochures to Markdown.
+Troubleshooting:
+- No module named openai: install requirements with the same Python used to launch uvicorn.
+- Missing key: configure OPENAI_API_KEY or LLM_API_KEY in the root .env.
+- A blank CHAT_MODEL now defaults to gpt-4o-mini.
+- Invalid credentials, model access, network errors, or API quota issues require the actual error to diagnose; passing local configuration tests does not validate an API account.
+- MOCK_RETRIEVAL=true uses synthetic evidence but still calls the chat model and requires an API key. It is not a fully offline mode.
+- Keep API keys in .env, never Git or chat messages.

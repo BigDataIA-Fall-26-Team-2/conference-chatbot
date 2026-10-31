@@ -45,7 +45,7 @@ evidence = retrieve(company_id="barndoor_ai", question="What does the gateway en
 
 Each result contains `id`, `text`, `company_id`, `source_file`, `page`, `chunk_index`, and `score`. Scores are cosine similarity (higher is better), not confidence probabilities. Similarity alone does not establish that a question is answerable; the backend must check whether the evidence supports its answer and cite the returned file/page metadata.
 
-Only exact IDs from `config/companies.yaml` are accepted. Missing/unknown IDs and empty questions raise `ValueError`; valid companies without indexed content return `[]`. There is no global-search fallback. Switching companies must also clear or isolate chat history in the UI/backend.
+Only exact IDs from `config/companies.yaml` are accepted. Missing/unknown IDs and empty questions raise `ValueError`; valid companies without indexed content return `[]`. There is no global-search fallback. The UI sends the explicitly selected company ID and current question. Each company has separate chat history.
 
 `index_chunks` validates all records and upserts stable IDs, so repeat indexing does not duplicate chunks and changed text updates an existing ID. It does not delete omitted IDs. If rechunking removes or renames chunks, rebuild into a fresh `CHROMA_DIR` to avoid stale evidence. Run ingestion/indexing before serving queries.
 
@@ -93,6 +93,25 @@ Remaining boundaries:
 - Indexing is an upsert, not an atomic full-corpus replacement. Use a fresh database directory after removing/rechunking source material; do not index concurrently with serving queries.
 - Company IDs are a scoping mechanism, not user authorization. The registry alias `bond ai` currently maps to `barndoor_ai`; verify it before implementing alias-based company routing. This retriever accepts only exact IDs and does not use aliases.
 
+## Local conference demo
+
+Start these in two terminals from the repository root with the virtual environment activated:
+
+```bash
+# Terminal 1 — API (reads your private .env)
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+
+# Terminal 2 — Streamlit
+python -m streamlit run frontend/streamlit_app.py --server.address 127.0.0.1 --server.port 8501
+```
+
+Open http://127.0.0.1:8501. Choose a company, type a question, and press Enter. Answers include file/page citations and a download of the cited brochure. Each company's chat is separate. Each question is answered independently; include the subject in follow-ups. The question counter has no ten-question limit. Use Download session to preserve the demo history; history otherwise lasts only for the browser session and is lost on a server restart.
+
+`API_URL` defaults to http://127.0.0.1:8000. API keys stay in the backend environment and are never requested by the UI. Brochure downloads are limited to files within the selected company's directory. Failed requests show an error and a manual retry button; requests are not automatically resubmitted.
+
+Ten prepared questions with expected answer summaries are in `tests/demo_questions.yaml`. Automated UI tests simulate ten questions, verify company-separated history, clear-chat behavior, retries, missing evidence, and offline backend handling. Run `python -m pytest -q`.
+
+After changing imported frontend modules (such as `frontend/api_client.py`), restart the Streamlit process as well as refreshing the browser. A page rerun can retain the previous imported function signature. Restart the API separately after backend changes. A server restart clears in-memory chat history; export the session first if needed.
 OCR cleanup: fixed rules for common Tesseract mistakes (standalone "Al" to "AI", "Pil" to "PII", "Il" to "II"), applied the same to all brochures.
 
 OCR fallback: a page goes to AWS Textract (Layout mode) if Tesseract average confidence is below 70, words are below 100, or more than 12% of words have confidence below 60. On our brochures this sent 4 of 12 pages to Textract (C1 p1, Merge p1 and p2, Halo Security p1).
