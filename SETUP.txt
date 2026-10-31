@@ -1,0 +1,17 @@
+Dhruvi's backend contribution — copy backend/ into the team repository.
+
+1. In the repository root: python3 -m venv .venv
+2. Activate: source .venv/bin/activate (Mac/Linux)
+3. Install: pip install -r requirements-backend.txt
+4. Copy .env.example to .env and set OPENAI_API_KEY.
+5. Until Lokesh's retrieval code is ready, set MOCK_RETRIEVAL=true in .env.
+6. Run: uvicorn backend.main:app --reload
+7. Visit http://127.0.0.1:8000/docs to test GET /companies and POST /chat.
+8. For real demo, set MOCK_RETRIEVAL=false and ensure `retrieval.retrieve(company_id, question, k=6)` exists.
+
+Important:
+- Mock retrieval contains SYNTHETIC content; do not present it as brochure facts.
+- Coordinate company IDs with Guna's registry; current IDs are provisional.
+- The retrieval module must export retrieve(...) at package root, or adjust import in backend/rag.py.
+- API keys stay in .env, never in Git.
+- This project does NOT convert brochures to Markdown.
