@@ -1,0 +1,284 @@
+# Demo question set — checked by hand against the brochure PDFs (not OCR output).
+# Page numbers are one-based, per PDF file.
+#
+# type:
+#   known_answer  — answer is stated directly in the brochure
+#   paraphrase    — same fact, asked in different words (tests semantic retrieval)
+#   missing_info  — brochure does not say; bot must set insufficient_evidence: true
+#   isolation     — fact exists only in ANOTHER company's brochure; bot must not use it
+#
+# expected_points: what a correct answer must contain (grade on these, not exact wording)
+
+questions:
+
+  # ---------------- Barndoor.ai ----------------
+  - id: barndoor_01
+    company_id: barndoor_ai
+    type: known_answer
+    question: What are the six things the Barndoor AI gateway enforces on every call?
+    expected_points:
+      - Human & agent access (RBAC by role, group, tool, action; dedicated identity per agent)
+      - Runtime policy (allow, deny, or require approval per tool call, enforced inline)
+      - AI-ready DLP (PII and secrets masked or blocked before reaching a model or MCP server)
+      - Routing & fallback (frontier and self-hosted models, routed to most cost-effective)
+      - Usage & cost control (real-time spend, hard caps by user, team, agent, model)
+      - Observability & audit (every action and policy, streamed to Splunk or Datadog)
+    sources:
+      - {source_file: 4_Barndoor.pdf, page: 2}
+
+  - id: barndoor_02
+    company_id: barndoor_ai
+    type: paraphrase
+    question: How does Barndoor keep sensitive data like PII away from the models?
+    expected_points:
+      - AI-ready DLP masks or blocks PII and secrets before they reach a model or MCP server
+    sources:
+      - {source_file: 4_Barndoor.pdf, page: 2}
+
+  - id: barndoor_03
+    company_id: barndoor_ai
+    type: known_answer
+    question: Where can Barndoor be deployed?
+    expected_points:
+      - SaaS (fully managed)
+      - Private cloud (in your VPC)
+      - On prem (data residency)
+    sources:
+      - {source_file: 4_Barndoor.pdf, page: 1}
+
+  - id: barndoor_04
+    company_id: barndoor_ai
+    type: known_answer
+    question: How many MCP servers and AI models does Barndoor support, and what certification does it have?
+    expected_points:
+      - 100+ MCP servers plus custom
+      - 100+ AI models plus self-hosted
+      - SOC 2 Type II certified
+    sources:
+      - {source_file: 4_Barndoor.pdf, page: 2}
+
+  - id: barndoor_05
+    company_id: barndoor_ai
+    type: missing_info
+    question: How much does Barndoor cost per user?
+    expected_points:
+      - Brochure does not provide pricing; insufficient_evidence is true
+    sources: []
+
+  # ---------------- C1.ai ----------------
+  - id: c1_01
+    company_id: c1_ai
+    type: known_answer
+    question: What does C1.ai do?
+    expected_points:
+      - Identity platform for the AI era
+      - Governs identity, access, and agent work for people, service accounts, and AI agents
+    sources:
+      - {source_file: 6_C1ai.pdf, page: 1}
+      - {source_file: 6_C1ai.pdf, page: 2}
+
+  - id: c1_02
+    company_id: c1_ai
+    type: known_answer
+    question: How many connectors and MCP servers does C1 have?
+    expected_points:
+      - 400+ C1 Connectors, built on Baton (open-source connector framework)
+      - 3,000+ C1 MCP Servers
+    sources:
+      - {source_file: 6_C1ai.pdf, page: 2}
+
+  - id: c1_03
+    company_id: c1_ai
+    type: paraphrase
+    question: Can engineers manage C1 access policies as code?
+    expected_points:
+      - Yes — REST API and SDKs, C1.ai CLI, Terraform, and Functions
+      - Access policy lives in code, so changes are reviewed, versioned, repeatable
+    sources:
+      - {source_file: 6_C1ai.pdf, page: 1}
+
+  - id: c1_04
+    company_id: c1_ai
+    type: known_answer
+    question: What percentage of organizations had an identity-related breach according to C1?
+    expected_points:
+      - 80% experienced at least one identity-related breach in the past year
+    sources:
+      - {source_file: 6_C1ai.pdf, page: 1}
+
+  - id: c1_05
+    company_id: c1_ai
+    type: known_answer
+    question: What are the four parts of the C1 product suite?
+    expected_points:
+      - Govern (identity)
+      - Run (secure agents)
+      - Work (put AI to work)
+      - Platform
+    sources:
+      - {source_file: 6_C1ai.pdf, page: 2}
+
+  # ---------------- Merge ----------------
+  - id: merge_01
+    company_id: merge
+    type: known_answer
+    question: What are the four components of Merge for Workforce?
+    expected_points:
+      - Universal context layer
+      - MCP gateway
+      - Model routing
+      - Security suite
+    sources:
+      - {source_file: 1_Merge.pdf, page: 1}
+
+  - id: merge_02
+    company_id: merge
+    type: known_answer
+    question: What are the two Merge products in the brochure?
+    expected_points:
+      - Merge for Workforce
+      - Merge for Products
+    sources:
+      - {source_file: 1_Merge.pdf, page: 1}
+      - {source_file: 1_Merge.pdf, page: 2}
+
+  - id: merge_03
+    company_id: merge
+    type: paraphrase
+    question: How does Merge make sure new hires only get the AI access they're allowed?
+    expected_points:
+      - Connects identity providers like Okta or Entra via SCIM
+      - AI access follows the org chart; new hires see what they're approved to use
+    sources:
+      - {source_file: 1_Merge.pdf, page: 1}
+
+  - id: merge_04
+    company_id: merge
+    type: known_answer
+    question: How many tools can agents access through Merge?
+    expected_points:
+      - 5,000+ tools, every call authenticated, logged, and auditable
+    sources:
+      - {source_file: 1_Merge.pdf, page: 2}
+
+  # ---------------- OmniTrust Halo ----------------
+  - id: halo_01
+    company_id: omnitrust_halo
+    type: known_answer
+    question: What are the three pillars of the Halo AI control plane for security leaders?
+    expected_points:
+      - Discover (AI across your enterprise, including Shadow AI)
+      - Control (govern and enforce AI use)
+      - Optimize (secure and optimize AI at runtime)
+    sources:
+      - {source_file: 2_Halo_AI_Security_IT_Leadership.pdf, page: 1}
+
+  - id: halo_02
+    company_id: omnitrust_halo
+    type: known_answer
+    question: What capabilities does Halo Agent Studio offer?
+    expected_points:
+      - Agent Builder
+      - App & Tool Connections
+      - Flexible AI Models
+      - Secure Agent Runtime
+      - Identity & Permissions
+      - Governance & Human Oversight
+      - Cost & Usage Control
+    sources:
+      - {source_file: 5_Halo_AI_Builders_Business_Teams.pdf, page: 2}
+
+  - id: halo_03
+    company_id: omnitrust_halo
+    type: paraphrase
+    question: How does Halo stop employees from using unapproved AI apps?
+    expected_points:
+      - Endpoint & browser control blocks unauthorized AI applications and websites
+      - Applies centrally managed policies and protects sensitive prompts
+    sources:
+      - {source_file: 2_Halo_AI_Security_IT_Leadership.pdf, page: 2}
+
+  - id: halo_04
+    company_id: omnitrust_halo
+    type: known_answer
+    question: How many agent actions per year does Halo's brochure predict by 2030?
+    expected_points:
+      - 459T (trillion) agent actions per year by 2030 (IDC, 2026)
+    sources:
+      - {source_file: 2_Halo_AI_Security_IT_Leadership.pdf, page: 1}
+      - {source_file: 5_Halo_AI_Builders_Business_Teams.pdf, page: 1}
+
+  - id: halo_05
+    company_id: omnitrust_halo
+    type: known_answer
+    question: What are the three layers of the Halo platform?
+    expected_points:
+      - Halo Endpoint
+      - Halo AI Gateway
+      - Halo Compute Cloud
+    sources:
+      - {source_file: 2_Halo_AI_Security_IT_Leadership.pdf, page: 1}
+
+  # ---------------- PromptQL ----------------
+  - id: promptql_01
+    company_id: promptql
+    type: known_answer
+    question: What are PromptQL's technical innovations?
+    expected_points:
+      - Operational wiki
+      - Code-backed execution
+      - Connected data access
+      - Teachable in the flow
+      - Multiplayer design
+      - Permissions and governance
+    sources:
+      - {source_file: 3_PromptQL.pdf, page: 2}
+
+  - id: promptql_02
+    company_id: promptql
+    type: paraphrase
+    question: Can people on my team work with the same PromptQL bot together?
+    expected_points:
+      - Yes — multiplayer design, one bot with multiple collaborators
+      - Invite teammates to review the work, add context, move it forward
+    sources:
+      - {source_file: 3_PromptQL.pdf, page: 1}
+      - {source_file: 3_PromptQL.pdf, page: 2}
+
+  - id: promptql_03
+    company_id: promptql
+    type: known_answer
+    question: What problems does PromptQL say teams face?
+    expected_points:
+      - Data and system access
+      - Knowledge silos
+      - Expertise gap
+      - Translation tax
+    sources:
+      - {source_file: 3_PromptQL.pdf, page: 1}
+
+  # ---------------- Isolation checks ----------------
+  # Each fact below exists ONLY in another company's brochure.
+  - id: iso_01
+    company_id: promptql
+    type: isolation
+    question: Is PromptQL SOC 2 Type II certified?
+    expected_points:
+      - insufficient_evidence is true (SOC 2 Type II appears only in Barndoor's brochure)
+    sources: []
+
+  - id: iso_02
+    company_id: merge
+    type: isolation
+    question: How many MCP servers does Merge support?
+    expected_points:
+      - insufficient_evidence is true; must NOT say 100+ (Barndoor) or 3,000+ (C1)
+    sources: []
+
+  - id: iso_03
+    company_id: barndoor_ai
+    type: isolation
+    question: Does Barndoor offer an Agent Studio for business teams?
+    expected_points:
+      - insufficient_evidence is true; Agent Studio is a Halo product
+    sources: []
