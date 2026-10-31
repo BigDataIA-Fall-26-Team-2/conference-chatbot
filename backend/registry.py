@@ -1,8 +1,9 @@
-# Replace with Guna's canonical registry when available.
+# Company IDs must match the retrieval index.
+
 COMPANIES = {
     'merge': 'Merge',
-    'halo_ai': 'Halo AI',
+    'omnitrust_halo': 'Halo AI',
     'promptql': 'PromptQL',
-    'barndoor': 'Barndoor',
+    'barndoor_ai': 'Barndoor',
     'c1_ai': 'C1.ai',
 }

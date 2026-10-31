@@ -11,7 +11,7 @@ def get_chunks(company_id: str, question: str) -> list[dict]:
         # Only a synthetic fixture; never use for a real brochure demo.
         return [{'id': 'mock_p1_c0', 'company_id': company_id, 'source_file': 'mock.pdf',
                  'page': 1, 'chunk_index': 0, 'text': 'ExampleCo offers workflow automation.', 'score': 0.1}]
-    module = importlib.import_module('retrieval')
+    module = importlib.import_module('retrieval.retrieve')
     return module.retrieve(company_id=company_id, question=question, k=6)
 
 
